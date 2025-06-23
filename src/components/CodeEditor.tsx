@@ -19,42 +19,42 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const predefinedExamples = [
     {
-      name: "For básico",
-      code: `for (let i = 1; i <= 10; i++) {
-  console.log("Numero: " + i);
+      name: "For básico C",
+      code: `for (int i = 1; i <= 10; i++) {
+    printf("Numero: %d\\n", i);
 }`
     },
     {
       name: "For con error semántico",
-      code: `for (let i = 1; a <= 10; i++) {
-  console.log("Numero: " + i);
+      code: `for (int i = 1; a <= 10; i++) {
+    printf("Numero: %d\\n", i);
 }`
     },
     {
       name: "Do-While válido",
-      code: `let a: number = 0;
-let b: number = 10;
-let c: number = 0;
-let x: number = 2;
+      code: `int a = 0;
+int b = 10;
+int c = 0;
+int x = 2;
 do {
     a = 3 * b;
     c = 2 + a;
-} while (x === 2);`
+} while (x == 2);`
     },
     {
       name: "Do-While con error",
-      code: `let a: number = 0;
-let b: number = 10;
-let c: number = 0;
+      code: `int a = 0;
+int b = 10;
+int c = 0;
 do {
     a = 3 * b;
     c = 2 + a;
-} while (x === 2);`
+} while (x == 2);`
     },
     {
       name: "For sin incremento",
-      code: `for (let i = 1; i <= 10;) {
-  console.log("Numero: " + i);
+      code: `for (int i = 1; i <= 10;) {
+    printf("Numero: %d\\n", i);
 }`
     },
     {
@@ -63,8 +63,22 @@ do {
 int y = 10;
 int z = x + y;
 for (int i = 0; i < z; i++) {
-    console.log(i);
+    printf("%d\\n", i);
 }`
+    },
+    {
+      name: "While básico",
+      code: `int i = 0;
+while (i < 5) {
+    printf("Iteración: %d\\n", i);
+    i++;
+}`
+    },
+    {
+      name: "Declaraciones con errores",
+      code: `int a = 5abc;
+int b = 10;
+int c = a + d;`
     }
   ];
 
@@ -91,7 +105,7 @@ for (int i = 0; i < z; i++) {
       {/* Editor de código */}
       <div>
         <label htmlFor="code-editor" className="block text-lg font-medium mb-2 text-gray-700">
-          Código TypeScript:
+          Código C/C++:
         </label>
         <textarea
           id="code-editor"
@@ -101,7 +115,7 @@ for (int i = 0; i < z; i++) {
                      font-mono text-sm bg-gray-50 focus:ring-2 
                      focus:ring-blue-500 focus:border-transparent
                      resize-none"
-          placeholder="Escribe tu código de bucle for aquí..."
+          placeholder="Escribe tu código C/C++ aquí..."
           spellCheck={false}
         />
       </div>
@@ -144,6 +158,17 @@ for (int i = 0; i < z; i++) {
           '🔍 Analizar Código'
         )}
       </button>
+
+      {/* Información de ayuda */}
+      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <h4 className="text-sm font-semibold text-blue-800 mb-1">💡 Consejos:</h4>
+        <ul className="text-xs text-blue-700 space-y-1">
+          <li>• Las variables deben declararse con tipo explícito (int, float, etc.)</li>
+          <li>• Cada declaración debe terminar con punto y coma (;)</li>
+          <li>• Los bucles for requieren: for(inicialización; condición; incremento)</li>
+          <li>• Los bucles do-while deben terminar con ; después del while</li>
+        </ul>
+      </div>
     </div>
   );
 };

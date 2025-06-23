@@ -9,14 +9,14 @@ import { AnalysisResult } from './types/AnalysisTypes';
 import './App.css';
 
 const App: React.FC = () => {
-  const [code, setCode] = useState(`let a: number = 0;
-let b: number = 10;
-let c: number = 0;
-let x: number = 2;
+  const [code, setCode] = useState(`int a = 0;
+int b = 10;
+int c = 0;
+int x = 2;
 do {
     a = 3 * b;
     c = 2 + a;
-} while (x === 2);`);
+} while (x == 2);`);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +42,7 @@ do {
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto py-8 px-4">
         <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
-          Analizador Sintáctico/Semántico TypeScript
+          Analizador Sintáctico/Semántico C/C++
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

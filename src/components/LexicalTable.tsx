@@ -164,7 +164,7 @@ const LexicalTable: React.FC<LexicalTableProps> = ({ tokens }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
             <span className="font-medium text-blue-700">Palabras Reservadas:</span>
-            <span className="ml-2 text-gray-600">for, do, while, let, const, var, int, string, number</span>
+            <span className="ml-2 text-gray-600">for, do, while, if, else, int, float, double, char, printf</span>
           </div>
           <div>
             <span className="font-medium text-green-700">Identificadores:</span>
@@ -179,6 +179,12 @@ const LexicalTable: React.FC<LexicalTableProps> = ({ tokens }) => {
             <span className="ml-2 text-gray-600">Operadores, paréntesis, llaves, punto y coma</span>
           </div>
         </div>
+      </div>
+
+      {/* Información adicional sobre C/C++ */}
+      <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded text-xs text-blue-700">
+        <span className="font-semibold">Nota C/C++:</span> El análisis léxico identifica tokens específicos del lenguaje C/C++, 
+        incluyendo tipos de datos primitivos (int, float, double, char) y funciones de biblioteca estándar (printf, scanf).
       </div>
     </div>
   );
