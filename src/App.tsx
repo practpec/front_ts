@@ -9,14 +9,18 @@ import { AnalysisResult } from './types/AnalysisTypes';
 import './App.css';
 
 const App: React.FC = () => {
-  const [code, setCode] = useState(`int a = 0;
-int b = 10;
-int c = 0;
-int x = 2;
-do {
-    a = 3 * b;
-    c = 2 + a;
-} while (x == 2);`);
+  const [code, setCode] = useState(`public class ejercicio {
+    public static void main(String[] args) {
+        int edad = 22;
+        String escuela = "upchiapas";
+        if (edad > 18) {
+            System.out.println("Mayor de edad");
+        }
+        if (escuela.equals("upchiapas")) {
+            System.out.println("Bienvenido a UPChiapas");
+        }
+    }
+}`);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +46,7 @@ do {
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto py-8 px-4">
         <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
-          Analizador Sintáctico/Semántico C/C++
+          Analizador Sintáctico/Semántico Java
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -89,7 +93,7 @@ do {
 
                 <LexicalTable tokens={analysisResult.tokens} />
                 
-                <TokenDisplay tokens={analysisResult.tokens} />
+                {/* <TokenDisplay tokens={analysisResult.tokens} /> */}
                 
                 {analysisResult.semanticInfo.length > 0 && (
                   <SemanticInfo info={analysisResult.semanticInfo} />

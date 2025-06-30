@@ -63,15 +63,19 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ errors }) => {
     if (errorLower.includes('se esperaba') && errorLower.includes('semicolon')) {
       return ['Agrega un punto y coma (;) al final de la declaración'];
     } else if (errorLower.includes('se esperaba') && errorLower.includes('identifier')) {
-      return ['Verifica que el nombre de la variable sea válido', 'Los identificadores deben comenzar con letra o _'];
+      return ['Verifica que el nombre de la variable sea válido', 'Los identificadores deben comenzar con letra o _', 'En Java, "args" es un identificador válido'];
+    } else if (errorLower.includes('se esperaba') && errorLower.includes('rbrace')) {
+      return ['Verifica que todas las llaves estén balanceadas {}', 'Cada { debe tener su correspondiente }'];
     } else if (errorLower.includes('se esperaba') && errorLower.includes('assignment')) {
       return ['Agrega el operador de asignación (=) en la declaración'];
     } else if (errorLower.includes('mal formado')) {
       return ['Verifica que el número no contenga letras', 'Los números deben ser solo dígitos y opcionalmente un punto decimal'];
     } else if (errorLower.includes('tipo')) {
-      return ['Declara la variable con un tipo válido (int, float, double, char)'];
+      return ['Declara la variable con un tipo válido (int, String, boolean, double)'];
+    } else if (errorLower.includes('args')) {
+      return ['En Java, "args" es el parámetro estándar del método main', 'Verifica la sintaxis: public static void main(String[] args)'];
     } else {
-      return ['Revisa la sintaxis del código C/C++'];
+      return ['Revisa la sintaxis del código Java', 'Verifica que la estructura de clase sea correcta'];
     }
   };
 
@@ -132,17 +136,18 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ errors }) => {
         })}
       </div>
 
-      {/* Sugerencias generales de corrección para C/C++ */}
+      {/* Sugerencias generales de corrección para Java */}
       <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
         <h3 className="font-semibold text-blue-800 mb-2 flex items-center">
-          💡 Guía de Sintaxis C/C++:
+          💡 Guía de Sintaxis Java:
         </h3>
         <ul className="text-sm text-blue-700 space-y-1">
-          <li>• <span className="font-semibold">Declaraciones:</span> tipo variable = valor; (ejemplo: int a = 5;)</li>
-          <li>• <span className="font-semibold">Bucle for:</span> for (tipo var = inicio; condición; incremento)</li>
-          <li>• <span className="font-semibold">Bucle do-while:</span> do {'{...}'} while (condición);</li>
-          <li>• <span className="font-semibold">Tipos válidos:</span> int, float, double, char, void</li>
-          <li>• <span className="font-semibold">Operadores:</span> +, -, *, /, =, ==, !=, {'<'}=, {'>'}=, ++, --</li>
+          <li>• <span className="font-semibold">Clase:</span> public class NombreClase {'{...}'}</li>
+          <li>• <span className="font-semibold">Método main:</span> public static void main(String[] args)</li>
+          <li>• <span className="font-semibold">Declaraciones:</span> tipo variable = valor; (ejemplo: int edad = 25;)</li>
+          <li>• <span className="font-semibold">Estructura if:</span> if (condición) {'{...}'}</li>
+          <li>• <span className="font-semibold">Tipos válidos:</span> int, String, boolean, double, float</li>
+          <li>• <span className="font-semibold">Comparación Strings:</span> variable.equals("valor")</li>
           <li>• <span className="font-semibold">Punto y coma:</span> Obligatorio al final de cada declaración</li>
         </ul>
       </div>
@@ -156,12 +161,16 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ errors }) => {
             <code className="ml-2 bg-white px-2 py-1 rounded font-mono">int numero = 10;</code>
           </div>
           <div>
-            <span className="font-semibold">Bucle for:</span>
-            <code className="ml-2 bg-white px-2 py-1 rounded font-mono">for (int i = 0; i &lt; 10; i++)</code>
+            <span className="font-semibold">String:</span>
+            <code className="ml-2 bg-white px-2 py-1 rounded font-mono">String nombre = "Juan";</code>
           </div>
           <div>
-            <span className="font-semibold">Do-while:</span>
-            <code className="ml-2 bg-white px-2 py-1 rounded font-mono">do {'{...}'} while (x &lt; 5);</code>
+            <span className="font-semibold">If:</span>
+            <code className="ml-2 bg-white px-2 py-1 rounded font-mono">if (edad &gt; 18) {'{...}'}</code>
+          </div>
+          <div>
+            <span className="font-semibold">Método main:</span>
+            <code className="ml-2 bg-white px-2 py-1 rounded font-mono">public static void main(String[] args)</code>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ const api = axios.create({
 export const analyzeCode = async (code: string): Promise<AnalysisResult> => {
   try {
     const request: AnalysisRequest = { code };
-    const response = await api.post<AnalysisResult>('/analyze-c', request);
+    const response = await api.post<AnalysisResult>('/analyze-java', request);
     return response.data;
   } catch (error) {
     console.error('Error al conectar con el servidor:', error);
@@ -22,16 +22,6 @@ export const analyzeCode = async (code: string): Promise<AnalysisResult> => {
   }
 };
 
-// Función para analizar TypeScript (comentada pero disponible)
-// export const analyzeTypeScript = async (code: string): Promise<AnalysisResult> => {
-//   try {
-//     const request: AnalysisRequest = { code };
-//     const response = await api.post<AnalysisResult>('/analyze', request);
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error al conectar con el servidor:', error);
-//     throw new Error('No se pudo conectar con el servidor de análisis');
-//   }
-// };
+
 
 export default api;

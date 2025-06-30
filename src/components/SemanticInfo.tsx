@@ -164,10 +164,11 @@ const SemanticInfo: React.FC<SemanticInfoProps> = ({ info }) => {
           </h3>
           <ul className="text-sm text-red-700 space-y-1">
             <li>• Asegúrate de que todas las variables estén declaradas antes de usarlas</li>
-            <li>• Verifica que las variables en condiciones e incrementos coincidan con la variable de control</li>
-            <li>• Confirma que los tipos de datos sean consistentes (int, float, double, char)</li>
-            <li>• Revisa la sintaxis de declaraciones de variables en C/C++</li>
-            <li>• Verifica que todas las variables declaradas se estén utilizando</li>
+            <li>• Verifica que las variables en condiciones sean del tipo correcto</li>
+            <li>• Usa .equals() para comparar Strings, no el operador ==</li>
+            <li>• Confirma que los tipos de datos sean consistentes (int, String, boolean, double)</li>
+            <li>• Verifica que la estructura de clase Java sea correcta (public class)</li>
+            <li>• Asegúrate de que el método main tenga la firma correcta</li>
           </ul>
         </div>
       )}
@@ -181,17 +182,18 @@ const SemanticInfo: React.FC<SemanticInfoProps> = ({ info }) => {
           <ul className="text-sm text-yellow-700 space-y-1">
             <li>• Las advertencias no impiden la compilación pero pueden indicar problemas lógicos</li>
             <li>• Variables no utilizadas ocupan memoria innecesariamente</li>
-            <li>• Bucles sin incremento pueden resultar en bucles infinitos</li>
-            <li>• Verifica que las condiciones de bucle sean lógicamente correctas</li>
+            <li>• Usar == para comparar Strings puede dar resultados inesperados</li>
+            <li>• Verifica que las condiciones de if sean lógicamente correctas</li>
+            <li>• Considera usar métodos apropiados para cada tipo de dato</li>
           </ul>
         </div>
       )}
 
-      {/* Información técnica específica para C/C++ */}
+      {/* Información técnica específica para Java */}
       <div className="mt-4 p-3 bg-cyan-50 border border-cyan-200 rounded text-xs text-cyan-700">
-        <span className="font-semibold">Análisis C/C++:</span> El análisis semántico verifica la coherencia lógica 
-        específica del lenguaje C/C++, incluyendo declaración obligatoria de tipos, uso de variables antes de declaración, 
-        consistencia en estructuras de control y detección de posibles errores lógicos comunes en programación estructurada.
+        <span className="font-semibold">Análisis Java:</span> El análisis semántico verifica la coherencia lógica 
+        específica del lenguaje Java, incluyendo estructura de clases, declaración de tipos, uso correcto de métodos 
+        como .equals() para Strings, y detección de errores semánticos comunes en programación orientada a objetos.
       </div>
 
       {/* Métricas de calidad del código */}

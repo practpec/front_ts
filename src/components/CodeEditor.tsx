@@ -19,93 +19,114 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const predefinedExamples = [
     {
-      name: "For básico C",
-      code: `for (int i = 1; i <= 10; i++) {
-    printf("Numero: %d\\n", i);
+      name: "Clase básica Java",
+      code: `public class ejercicio {
+    public static void main(String[] args) {
+        int edad = 22;
+        String escuela = "upchiapas";
+        if (edad > 18) {
+            System.out.println("Mayor de edad");
+        }
+        if (escuela.equals("upchiapas")) {
+            System.out.println("Bienvenido a UPChiapas");
+        }
+    }
 }`
     },
     {
-      name: "For con error semántico",
-      code: `for (int i = 1; a <= 10; i++) {
-    printf("Numero: %d\\n", i);
+      name: "Variables con errores",
+      code: `public class Test {
+    public static void main(String[] args) {
+        int edad = "veinte";
+        String nombre = 25;
+        if (edad > 18) {
+            System.out.println("Mayor");
+        }
+    }
 }`
     },
     {
-      name: "Do-While válido",
-      code: `int a = 0;
-int b = 10;
-int c = 0;
-int x = 2;
-do {
-    a = 3 * b;
-    c = 2 + a;
-} while (x == 2);`
-    },
-    {
-      name: "Do-While con error",
-      code: `int a = 0;
-int b = 10;
-int c = 0;
-do {
-    a = 3 * b;
-    c = 2 + a;
-} while (x == 2);`
-    },
-    {
-      name: "For sin incremento",
-      code: `for (int i = 1; i <= 10;) {
-    printf("Numero: %d\\n", i);
+      name: "If sin llaves",
+      code: `public class Test {
+    public static void main(String[] args) {
+        int x = 10;
+        if (x > 5)
+            System.out.println("Mayor que 5");
+    }
 }`
     },
     {
-      name: "Múltiples declaraciones",
-      code: `int x = 5;
-int y = 10;
-int z = x + y;
-for (int i = 0; i < z; i++) {
-    printf("%d\\n", i);
+      name: "Comparación incorrecta",
+      code: `public class Test {
+    public static void main(String[] args) {
+        String nombre = "Juan";
+        if (nombre == "Juan") {
+            System.out.println("Hola Juan");
+        }
+    }
 }`
     },
     {
-      name: "While básico",
-      code: `int i = 0;
-while (i < 5) {
-    printf("Iteración: %d\\n", i);
-    i++;
+      name: "Variable no declarada",
+      code: `public class Test {
+    public static void main(String[] args) {
+        int edad = 20;
+        if (altura > 170) {
+            System.out.println("Alto");
+        }
+    }
 }`
     },
     {
-      name: "Declaraciones con errores",
-      code: `int a = 5abc;
-int b = 10;
-int c = a + d;`
+      name: "Múltiples variables",
+      code: `public class Test {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        String mensaje = "Suma:";
+        int suma = a + b;
+        System.out.println(mensaje);
+        System.out.println(suma);
+    }
+}`
+    },
+    {
+      name: "Estructura completa",
+      code: `public class Calculadora {
+    public static void main(String[] args) {
+        int num1 = 15;
+        int num2 = 25;
+        String operacion = "suma";
+        if (num1 > 10) {
+            System.out.println("Número válido");
+        }
+        if (operacion.equals("suma")) {
+            System.out.println("Realizando suma");
+        }
+    }
+}`
+    },
+    {
+      name: "Errores múltiples",
+      code: `public class Error {
+    public static void main(String[] args) {
+        int edad = 25abc;
+        String nombre;
+        if (peso > 70) {
+            System.out.println("Pesado");
+        }
+    }
+}`
     }
   ];
 
   return (
     <div className="space-y-4">
-      {/* Ejemplos predefinidos */}
-      <div>
-        <h3 className="text-lg font-medium mb-2 text-gray-700">Ejemplos:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          {predefinedExamples.map((example, index) => (
-            <button
-              key={index}
-              onClick={() => onChange(example.code)}
-              className="px-3 py-2 text-sm bg-blue-100 hover:bg-blue-200 
-                         text-blue-800 rounded-lg transition-colors duration-200
-                         border border-blue-300 text-left"
-            >
-              {example.name}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Editor de código */}
       <div>
         <label htmlFor="code-editor" className="block text-lg font-medium mb-2 text-gray-700">
-          Código C/C++:
+          Código Java:
         </label>
         <textarea
           id="code-editor"
@@ -115,7 +136,7 @@ int c = a + d;`
                      font-mono text-sm bg-gray-50 focus:ring-2 
                      focus:ring-blue-500 focus:border-transparent
                      resize-none"
-          placeholder="Escribe tu código C/C++ aquí..."
+          placeholder="Escribe tu código Java aquí..."
           spellCheck={false}
         />
       </div>
@@ -161,12 +182,13 @@ int c = a + d;`
 
       {/* Información de ayuda */}
       <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-        <h4 className="text-sm font-semibold text-blue-800 mb-1">💡 Consejos:</h4>
+        <h4 className="text-sm font-semibold text-blue-800 mb-1">💡 Consejos Java:</h4>
         <ul className="text-xs text-blue-700 space-y-1">
-          <li>• Las variables deben declararse con tipo explícito (int, float, etc.)</li>
+          <li>• Toda clase debe tener modificador 'public' y método main</li>
+          <li>• Las variables deben declararse con tipo explícito (int, String, etc.)</li>
+          <li>• Usar .equals() para comparar Strings, no ==</li>
+          <li>• System.out.println() para imprimir mensajes</li>
           <li>• Cada declaración debe terminar con punto y coma (;)</li>
-          <li>• Los bucles for requieren: for(inicialización; condición; incremento)</li>
-          <li>• Los bucles do-while deben terminar con ; después del while</li>
         </ul>
       </div>
     </div>
