@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AnalysisResult, AnalysisRequest, AnalysisWithMetrics } from '../types/AnalysisTypes';
+import { AnalysisResult, AnalysisWithMetrics, AnalysisRequest } from '../types/AnalysisTypes';
 
 const API_BASE_URL = 'http://localhost:8080';
 
@@ -8,9 +8,10 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000,
+  timeout: 30000,
 });
 
+// Función original que ya funcionaba
 export const analyzeCode = async (code: string): Promise<AnalysisResult> => {
   try {
     const request: AnalysisRequest = { code };
@@ -22,6 +23,7 @@ export const analyzeCode = async (code: string): Promise<AnalysisResult> => {
   }
 };
 
+// Nueva función para análisis optimizado con métricas
 export const analyzeCodeOptimized = async (code: string): Promise<AnalysisWithMetrics> => {
   try {
     const request: AnalysisRequest = { code };
